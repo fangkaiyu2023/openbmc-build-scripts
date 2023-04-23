@@ -108,6 +108,7 @@ chmod a+x "${WORKSPACE}"/build.sh
 
 # Configure docker build
 
+#保持基础 docker 镜像与生成qemu二进制文件的那个镜像之间的同步？什么意思
 # !!!
 # Keep the base docker image in sync with the image under which we run the
 # resulting qemu binary.
