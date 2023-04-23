@@ -13,7 +13,7 @@
 # directory' called 'qemu'.
 #
 # 如果是在本地构建（本地是指主机，需要提前安装好docker），也需要把 WORKSPACE设置到qemu目录之上
-# 具体：先cd ~，git再export WORKSPACE=$PWD(不需要像加qemu，因为git会自动生成该目录）,最后运行脚本： ~/openbmc-build-scripts/qemu-build.sh
+# 具体：先cd ~，git再export WORKSPACE=$PWD/qemu,最后运行脚本： ~/openbmc-build-scripts/qemu-build.sh
 # 手动构建qemu可以参考：https://zhuanlan.zhihu.com/p/622572068，但该构建只用于编译出qemu，并不会生成docker镜像
 # When building locally set WORKSPACE to be the directory above the qemu
 # checkout:
@@ -148,7 +148,9 @@ if ! docker build -t ${img_name} - <<< "${Dockerfile}" ; then
     echo "Failed to build docker container."
     exit 1
 fi
-
+# 下面的代码在ubuntu22 lts需要手动执行的，执行前需要导入环境变量。例如：
+# export WORKSPACE=$PWD
+# export img_name=qemu-build
 docker run \
     --rm=true \
     -e WORKSPACE="${WORKSPACE}" \
