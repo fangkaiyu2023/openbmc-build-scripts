@@ -12,8 +12,8 @@
 # In Jenkins configure the git SCM 'Additional Behaviours', 'check-out to a sub
 # directory' called 'qemu'.
 #
-# 如果是在本地构建，需要把 WORKSPACE设置到qemu目录之上
-# 先cd ~，git再export WORKSPACE=$PWD/qemu,最后运行脚本： ~/openbmc-build-scripts/qemu-build.sh
+# 如果是在本地构建（本地是指主机，需要提前安装好docker），也需要把 WORKSPACE设置到qemu目录之上
+# 具体：先cd ~，git再export WORKSPACE=$PWD/qemu,最后运行脚本： ~/openbmc-build-scripts/qemu-build.sh
 # When building locally set WORKSPACE to be the directory above the qemu
 # checkout:
 #   git clone https://github.com/qemu/qemu
