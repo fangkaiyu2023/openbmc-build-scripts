@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This build script is for running the Jenkins builds using docker.
-
+# 使用docker构建jenkins的脚本
 # Trace bash processing
 set -x
 
