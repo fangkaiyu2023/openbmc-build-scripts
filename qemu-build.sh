@@ -1,14 +1,18 @@
 #!/bin/bash
 ###############################################################################
 #
+# 该脚本作用是在一个docker容器中自动构建qemu
 # This build script is for running the QEMU build in a container
 #
+# 脚本运行的时候，必须有一个叫做$WORKSPACE/qemu的目录存放有qemu的源代码，其中这个WORKSPACE是一个环境变量
 # It expects to be run in with the qemu source present in the directory called
 # '$WORKSPACE/qemu', where WORKSPACE is an environment variable.
 #
+# 在 Jenkins中要按照如下配置，并且检出到一个叫做qemu的子目录
 # In Jenkins configure the git SCM 'Additional Behaviours', 'check-out to a sub
 # directory' called 'qemu'.
 #
+# 如果是在本地构建，需要把 WORKSPACE设置到qemu目录之上
 # When building locally set WORKSPACE to be the directory above the qemu
 # checkout:
 #   git clone https://github.com/qemu/qemu
