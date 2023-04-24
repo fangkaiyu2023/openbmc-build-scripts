@@ -148,9 +148,7 @@ if ! docker build -t ${img_name} - <<< "${Dockerfile}" ; then
     echo "Failed to build docker container."
     exit 1
 fi
-# 下面的代码在ubuntu22 lts需要手动执行的，执行前需要导入环境变量。例如：
-# export WORKSPACE=$PWD
-# export img_name=qemu-build
+# 进入镜像需要自己手动执行
 docker run \
     --rm=true \
     -e WORKSPACE="${WORKSPACE}" \
