@@ -126,10 +126,8 @@ if [[ ${LAUNCH} == "local" ]]; then
             --env DEFAULT_IMAGE_LOC="${DEFAULT_IMAGE_LOC}" \
             --workdir "${OBMC_BUILD_DIR}"           \
             --volume "${UPSTREAM_WORKSPACE}:${OBMC_BUILD_DIR}:ro" \
-            --interactive \
             --tty \
-        "${DOCKER_IMG_NAME}" "${OBMC_BUILD_DIR}"/boot-qemu-test.exp \
-        /bin/bash)
+        "${DOCKER_IMG_NAME}" "${OBMC_BUILD_DIR}"/boot-qemu-test.exp)
     echo ${obmc_qemu_docker}
 
     # We can use default ports because we're going to have the 2
