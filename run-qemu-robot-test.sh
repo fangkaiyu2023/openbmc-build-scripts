@@ -115,7 +115,7 @@ if [[ ${LAUNCH} == "local" ]]; then
 
     # Start QEMU docker instance
     # root in docker required to open up the https/ssh ports
-    obmc_qemu_docker=$(docker run --detach \
+       obmc_qemu_docker=$(docker run --detach \
             --rm \
             --user root \
             --env HOME="${OBMC_BUILD_DIR}" \
@@ -127,7 +127,7 @@ if [[ ${LAUNCH} == "local" ]]; then
             --workdir "${OBMC_BUILD_DIR}"           \
             --volume "${UPSTREAM_WORKSPACE}:${OBMC_BUILD_DIR}:ro" \
             --tty \
-            "${DOCKER_IMG_NAME}" "${OBMC_BUILD_DIR}"/boot-qemu-test.exp)
+        "${DOCKER_IMG_NAME}" "${OBMC_BUILD_DIR}"/boot-qemu-test.exp)
     echo ${obmc_qemu_docker}
 
     # We can use default ports because we're going to have the 2
