@@ -126,6 +126,7 @@ if [[ ${LAUNCH} == "local" ]]; then
             --env DEFAULT_IMAGE_LOC="${DEFAULT_IMAGE_LOC}" \
             --workdir "${OBMC_BUILD_DIR}"           \
             --volume "${UPSTREAM_WORKSPACE}:${OBMC_BUILD_DIR}:ro" \
+            --interactive \
             --tty \
         "${DOCKER_IMG_NAME}" "${OBMC_BUILD_DIR}"/boot-qemu-test.exp \
         /bin/bash)
