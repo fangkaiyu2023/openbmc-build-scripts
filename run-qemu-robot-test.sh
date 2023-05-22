@@ -149,6 +149,7 @@ if [[ ${LAUNCH} == "local" ]]; then
     while [ $attempt -gt 0 ]; do
         attempt=$(( attempt - 1 ))
         echo "Waiting for qemu to get to standby (attempt: $attempt)..."
+        echo ${obmc_qemu_docker}
         result=$(docker logs "$obmc_qemu_docker")
         if grep -q 'OPENBMC-READY' <<< "$result" ; then
             echo "QEMU is ready!"
