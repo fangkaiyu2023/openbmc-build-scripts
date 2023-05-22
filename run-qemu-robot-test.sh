@@ -1,4 +1,4 @@
-#!/bin/bash -xe
+#!/bin/bash
 ###############################################################################
 # 用来启动qemu运行images并使用robot对其进行持续集成（Continuous Integration，CI）测试的脚本
 # This script is for starting QEMU against the input build and running the
@@ -188,7 +188,7 @@ if [[ ${LAUNCH} == "local" ]]; then
         "${DOCKER_IMG_NAME}" "${HOME}"/run-robot.sh
 
     # Now stop the QEMU Docker image
-    docker stop "$obmc_qemu_docker"
+    # docker stop "$obmc_qemu_docker"
 
 else
     echo "LAUNCH variable invalid, Exiting"
