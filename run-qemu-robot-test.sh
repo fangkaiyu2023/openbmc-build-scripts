@@ -128,6 +128,7 @@ if [[ ${LAUNCH} == "local" ]]; then
             --volume "${UPSTREAM_WORKSPACE}:${OBMC_BUILD_DIR}:ro" \
             --tty \
         "${DOCKER_IMG_NAME}" "${OBMC_BUILD_DIR}"/boot-qemu-test.exp)
+    echo ${obmc_qemu_docker}
 
     # We can use default ports because we're going to have the 2
     # docker instances talk over their private network
@@ -188,7 +189,7 @@ if [[ ${LAUNCH} == "local" ]]; then
         "${DOCKER_IMG_NAME}" "${HOME}"/run-robot.sh
 
     # Now stop the QEMU Docker image
-    # docker stop "$obmc_qemu_docker"
+    docker stop "$obmc_qemu_docker"
 
 else
     echo "LAUNCH variable invalid, Exiting"
