@@ -80,14 +80,18 @@ class PackageDef(TypedDict, total=False):
 # Packages to include in image.
 packages = {
     "boost": PackageDef(
-        rev="1.81.0",
+        rev="1.82.0",
         url=(
             lambda pkg, rev: f"https://boostorg.jfrog.io/artifactory/main/release/{rev}/source/{pkg}_{rev.replace('.', '_')}.tar.gz"  # noqa: E501
         ),
         build_type="custom",
         build_steps=[
             (
-                "./bootstrap.sh"
+                "curl --remote-name"
+                " https://github.com/williamspatrick/beast/commit/98f8b1fbd059a35754c2c7b2841769cf8d021272.patch"
+                " && patch -p2 <"
+                " 98f8b1fbd059a35754c2c7b2841769cf8d021272.patch &&"
+                " ./bootstrap.sh"
                 f" --prefix={prefix} --with-libraries=context,coroutine"
             ),
             "./b2",
@@ -747,13 +751,15 @@ RUN sed -i '/-\\(backports\\|security\\) /d' /etc/apt/sources.list.d/debug.list
 RUN cat /etc/apt/sources.list.d/debug.list
 
 RUN apt-get update && apt-get dist-upgrade -yy && apt-get install -yy \
+    abi-compliance-checker \
+    abi-dumper \
     autoconf \
     autoconf-archive \
     bison \
-    clang-15 \
-    clang-format-15 \
-    clang-tidy-15 \
-    clang-tools-15 \
+    clang-16 \
+    clang-format-16 \
+    clang-tidy-16 \
+    clang-tools-16 \
     cmake \
     curl \
     dbus \
@@ -821,13 +827,13 @@ RUN apt-get update && apt-get dist-upgrade -yy && apt-get install -yy \
 #  --slave /usr/bin/gcov-tool gcov-tool /usr/bin/gcov-tool-12
 #RUN update-alternatives --install /usr/bin/cpp cpp /usr/bin/cpp-12 12
 
-RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-15 1000 \
-  --slave /usr/bin/clang++ clang++ /usr/bin/clang++-15 \
-  --slave /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-15 \
-  --slave /usr/bin/clang-format clang-format /usr/bin/clang-format-15 \
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-16 1000 \
+  --slave /usr/bin/clang++ clang++ /usr/bin/clang++-16 \
+  --slave /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-16 \
+  --slave /usr/bin/clang-format clang-format /usr/bin/clang-format-16 \
   --slave /usr/bin/run-clang-tidy run-clang-tidy.py \
-        /usr/bin/run-clang-tidy-15 \
-  --slave /usr/bin/scan-build scan-build /usr/bin/scan-build-15
+        /usr/bin/run-clang-tidy-16 \
+  --slave /usr/bin/scan-build scan-build /usr/bin/scan-build-16
 
 """
 
@@ -885,7 +891,7 @@ RUN if grep -q ":{gid}:" /etc/group ; then \
     fi
 RUN mkdir -p "{os.path.dirname(homedir)}"
 RUN if grep -q ":{uid}:" /etc/passwd ; then \
-        usermod -l {username} -d {homedir} $(awk -F : '{{ if ($3 == {uid}) {{ print $1 }} }}' /etc/passwd) ; \
+        usermod -l {username} -d {homedir} -m $(awk -F : '{{ if ($3 == {uid}) {{ print $1 }} }}' /etc/passwd) ; \
     else \
         useradd -d {homedir} -m -u {uid} -g {gid} {username} ; \
     fi
