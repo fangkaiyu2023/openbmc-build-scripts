@@ -99,7 +99,9 @@ RUN apt-get update && apt-get install -yy \
     python3-pip \
     ipmitool \
     xvfb \
-    rustc
+    rustc \
+    libsdl2-dev \
+    libsdl2-2.0-0 \
 
 RUN apt-get update -qqy \
   && apt-get -qqy --no-install-recommends install firefox \
