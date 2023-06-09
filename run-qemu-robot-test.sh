@@ -185,7 +185,7 @@ if [[ ${LAUNCH} == "local" ]]; then
 
     # Run the Docker container to execute the Robot test cases
     # The test results will be put in ${WORKSPACE}
-    docker run --rm \
+    obmc_robot_docker=$(docker run --rm \
         --env HOME="${HOME}" \
         --env IP_ADDR="${DOCKER_QEMU_IP_ADDR}" \
         --env SSH_PORT="${DOCKER_SSH_PORT}" \
@@ -194,10 +194,11 @@ if [[ ${LAUNCH} == "local" ]]; then
         --workdir "${HOME}" \
         --volume "${WORKSPACE}":"${HOME}" \
         --tty \
-        "${DOCKER_IMG_NAME}" "${HOME}"/run-robot.sh
+        "${DOCKER_IMG_NAME}" "${HOME}"/run-robot.sh)
 
-    # Now stop and delete the QEMU Docker contariner
+    # Now stop the QEMU Docker contariner and ROBOT Docker container
     docker stop "$obmc_qemu_docker"
+    docker stop "$obmc_robot_docker"
     # docker rm "$obmc_qemu_docker"
 else
     echo "LAUNCH variable invalid, Exiting"
