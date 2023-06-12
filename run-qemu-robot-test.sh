@@ -198,7 +198,7 @@ if [[ ${LAUNCH} == "local" ]]; then
 
     # Now stop the QEMU Docker contariner and ROBOT Docker container
     docker stop "$obmc_qemu_docker"
-    docker stop "$obmc_robot_docker"
+    #docker stop "$obmc_robot_docker"
     # docker rm "$obmc_qemu_docker"
 else
     echo "LAUNCH variable invalid, Exiting"
