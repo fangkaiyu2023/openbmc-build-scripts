@@ -197,7 +197,7 @@ if [[ ${LAUNCH} == "local" ]]; then
         "${DOCKER_IMG_NAME}" "${HOME}"/run-robot.sh)
 
     # Now stop the QEMU Docker contariner and ROBOT Docker container
-    docker stop "$obmc_robot_docker"
+    #docker stop "$obmc_robot_docker"
     docker stop "$obmc_qemu_docker"
     # docker rm "$obmc_qemu_docker"
 else
