@@ -27,8 +27,8 @@ ROBOT_TEST_CMD="${ROBOT_TEST_CMD:-"python3 -m robot\
     -v REDFISH_SUPPORT_TRANS_STATE:1\
     --argumentfile ./test_lists/QEMU_CI ./tests ./redfish ./ipmi"}"
     
-mkdir -p ~/.ssh
-ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+# mkdir -p ~/.ssh
+# ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 git clone git@github.com:fangkaiyu2023/openbmc-test-automation.git \
     "${ROBOT_CODE_HOME}"
 
