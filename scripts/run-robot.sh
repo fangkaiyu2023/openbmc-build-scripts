@@ -29,8 +29,9 @@ ROBOT_TEST_CMD="${ROBOT_TEST_CMD:-"python3 -m robot\
     
 # mkdir -p ~/.ssh
 # ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-git clone https://github.com/fangkaiyu2023/openbmc-test-automation.git \
-    "${ROBOT_CODE_HOME}"
+# git clone https://github.com/fangkaiyu2023/openbmc-test-automation.git \
+#    "${ROBOT_CODE_HOME}"
+cp "${HOME}/openbmc-test-automation" "${ROBOT_CODE_HOME}"
 
 cd "${ROBOT_CODE_HOME}" || exit
 
