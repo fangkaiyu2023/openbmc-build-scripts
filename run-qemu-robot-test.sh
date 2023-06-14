@@ -193,6 +193,7 @@ if [[ ${LAUNCH} == "local" ]]; then
         --env MACHINE="${MACHINE_QEMU}" \
         --workdir "${HOME}" \
         --volume "${WORKSPACE}":"${HOME}" \
+	--volume ${HOME}/openbmc-test-automation:${HOME} \
         --tty \
         "${DOCKER_IMG_NAME}" "${HOME}"/run-robot.sh
 
