@@ -19,7 +19,7 @@
 # we don't want to fail on bad rc since robot tests may fail
 
 MACHINE=${MACHINE:-"qemu"}
-ROBOT_CODE_HOME=${ROBOT_CODE_HOME:-/tmp/$(whoami)/${RANDOM}/obmc-robot/}
+ROBOT_CODE_HOME=${ROBOT_CODE_HOME:-"${HOME}/openbmc-test-automation"}
 ROBOT_TEST_CMD="${ROBOT_TEST_CMD:-"python3 -m robot\
     -v OPENBMC_HOST:${IP_ADDR}\
     -v SSH_PORT:${SSH_PORT}\
@@ -31,7 +31,6 @@ ROBOT_TEST_CMD="${ROBOT_TEST_CMD:-"python3 -m robot\
 # ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 # git clone https://github.com/fangkaiyu2023/openbmc-test-automation.git \
 #    "${ROBOT_CODE_HOME}"
-cp -r "${HOME}/openbmc-test-automation" "${ROBOT_CODE_HOME}"
 
 cd "${ROBOT_CODE_HOME}" || exit
 
